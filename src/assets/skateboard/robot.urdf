@@ -26,7 +26,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/base_link.STL" />
+          filename="meshes/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -40,7 +40,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/base_link.STL" />
+          filename="meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -66,7 +66,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/tr0.STL" />
+          filename="meshes/tr0.STL" />
       </geometry>
       <material
         name="">
@@ -80,7 +80,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/tr0.STL" />
+          filename="meshes/tr0.STL" />
       </geometry>
     </collision>
   </link>
@@ -124,7 +124,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/wh0.STL" />
+          filename="meshes/wh0.STL" />
       </geometry>
       <material
         name="">
@@ -138,7 +138,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/wh0.STL" />
+          filename="meshes/wh0.STL" />
       </geometry>
     </collision>
   </link>
@@ -177,7 +177,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/wh1.STL" />
+          filename="meshes/wh1.STL" />
       </geometry>
       <material
         name="">
@@ -191,7 +191,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/wh1.STL" />
+          filename="meshes/wh1.STL" />
       </geometry>
     </collision>
   </link>
@@ -230,7 +230,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/tr1.STL" />
+          filename="meshes/tr1.STL" />
       </geometry>
       <material
         name="">
@@ -244,7 +244,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/tr1.STL" />
+          filename="meshes/tr1.STL" />
       </geometry>
     </collision>
   </link>
@@ -288,7 +288,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/wh2.STL" />
+          filename="meshes/wh2.STL" />
       </geometry>
       <material
         name="">
@@ -302,7 +302,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/wh2.STL" />
+          filename="meshes/wh2.STL" />
       </geometry>
     </collision>
   </link>
@@ -341,7 +341,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/wh3.STL" />
+          filename="meshes/wh3.STL" />
       </geometry>
       <material
         name="">
@@ -355,7 +355,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robot/meshes/wh3.STL" />
+          filename="meshes/wh3.STL" />
       </geometry>
     </collision>
   </link>

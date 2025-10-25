@@ -1,5 +1,6 @@
 import isaaclab.sim as sim_utils
-from isaaclab.assets import AssetBaseCfg, RigidObjectCfg
+from isaaclab.actuators import ImplicitActuatorCfg
+from isaaclab.assets import ArticulationCfg, AssetBaseCfg
 from isaaclab.envs import ManagerBasedRLEnvCfg
 from isaaclab.managers import EventTermCfg as EventTerm
 from isaaclab.managers import ObservationGroupCfg as ObsGroup
@@ -10,6 +11,7 @@ from isaaclab.managers import TerminationTermCfg as DoneTerm
 from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.utils import configclass
 import isaaclab.envs.mdp as mdp
+import os
 
 from isaaclab_assets import G1_MINIMAL_CFG
 
@@ -31,20 +33,39 @@ class BalanceSceneCfg(InteractiveSceneCfg):
     # G1 robot (using pre-built Isaac Lab asset)
     robot = G1_MINIMAL_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
     
-    # Skateboard (simple box platform)
-    skateboard: RigidObjectCfg = RigidObjectCfg(
+    # Skateboard (from your URDF with meshes - as articulation to keep all parts)
+    skateboard: ArticulationCfg = ArticulationCfg(
         prim_path="{ENV_REGEX_NS}/Skateboard",
-        spawn=sim_utils.CuboidCfg(
-            size=(0.8, 0.3, 0.05),
+        spawn=sim_utils.UrdfFileCfg(
+            asset_path=os.path.join(os.path.dirname(__file__), "..", "assets", "skateboard", "robot.urdf"),
+            fix_base=True,  # Fixed to world - won't move
             rigid_props=sim_utils.RigidBodyPropertiesCfg(
-                kinematic_enabled=True,
-                disable_gravity=True,
+                disable_gravity=False,
+                max_depenetration_velocity=1.0,
             ),
-            mass_props=sim_utils.MassPropertiesCfg(mass=1.0),
-            collision_props=sim_utils.CollisionPropertiesCfg(),
-            visual_material=sim_utils.PreviewSurfaceCfg(diffuse_color=(0.5, 0.5, 0.5)),
+            articulation_props=sim_utils.ArticulationRootPropertiesCfg(
+                enabled_self_collisions=False,
+            ),
+            joint_drive=sim_utils.UrdfConverterCfg.JointDriveCfg(
+                gains=sim_utils.UrdfConverterCfg.JointDriveCfg.PDGainsCfg(stiffness=0.0, damping=0.0)
+            ),
         ),
-        init_state=RigidObjectCfg.InitialStateCfg(pos=(0.0, 0.0, 0.025)),
+        init_state=ArticulationCfg.InitialStateCfg(
+            pos=(0.0, 0.0, 0.08),
+            joint_pos={".*": 0.0},
+        ),
+        actuators={
+            "wheels": ImplicitActuatorCfg(
+                joint_names_expr=["whj.*"],  # Wheel joints
+                stiffness=0.0,
+                damping=0.1,  # Small damping to keep wheels stable
+            ),
+            "trucks": ImplicitActuatorCfg(
+                joint_names_expr=["trj.*"],  # Truck joints
+                stiffness=0.0,
+                damping=0.1,
+            ),
+        },
     )
     
     # Light
